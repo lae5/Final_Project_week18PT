@@ -1,0 +1,14 @@
+package com.promineotech.candle.service;
+
+import com.promineotech.candle.entity.Order;
+import com.promineotech.candle.entity.OrderRequest;
+
+public interface CandleOrderService {
+
+	   static Order createOrder(OrderRequest orderRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	}
+
+

@@ -1,0 +1,11 @@
+package com.promineotech.candle.service;
+
+import java.util.List;
+
+import com.promineotech.candle.entity.Option;
+
+public interface CandleSalesService {
+
+	List<Option> fetchOptions(Option candle_type, String size, String scent);
+
+}

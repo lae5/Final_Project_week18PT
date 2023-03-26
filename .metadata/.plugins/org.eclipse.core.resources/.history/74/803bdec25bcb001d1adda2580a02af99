@@ -1,0 +1,37 @@
+package com.promineotech.candle.dao;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
+import com.promineotech.candle.entity.CandleType;
+import com.promineotech.candle.entity.Customer;
+import com.promineotech.candle.entity.Option;
+import com.promineotech.candle.entity.Order;
+import com.promineotech.candle.entity.OrderRequest;
+import com.promineotech.candle.entity.ScentName;
+import com.promineotech.candle.entity.SizeType;
+
+
+
+
+public interface CandleOrderDao {
+    
+	
+	Order createOrder(OrderRequest orderRequest);
+
+	  List<Option> fetchOptions(List<String> optionIds);
+	  Optional<Customer> fetchCustomer(String customerId);
+	  Optional<CandleType> fetchCandleType(CandleType candleId);
+	  Optional<ScentName> fetchScentName(ScentName scentId);
+	  Optional<SizeType> fetchSizeType(SizeType sizeId);
+	  	  
+	  
+	  Order saveOrder(Customer customer, CandleType candle, ScentName scent, SizeType size,  
+	      BigDecimal price, List<Option> options);
+
+	
+	}
+
+	
+
+

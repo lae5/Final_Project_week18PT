@@ -1,0 +1,44 @@
+package com.promineotech.candle.controller;
+
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.promineotech.candle.entity.Order;
+
+@RequestMapping("/orders") 
+@Validated
+public interface CandleOrderController {
+	@Operation( //told API about the parameters
+			summary = "Create an order for a candle",
+			description = "Return create a candle",
+			responses = {
+			@ApiResponse(responseCode = "201",
+			description = "The created Candle is returned", 
+			content = @Content(mediaType = "application/json", 
+			schema = @Schema(implementation = Order.class) )),
+			@ApiResponse(responseCode = "400", 
+			description = "The request parameters are invalid", 
+			content = @Content(mediaType = "application/json")),
+			@ApiResponse(responseCode = "404",
+			description = "A candle was not found with the input criteria",
+			content = @Content(mediaType = "application/json")),
+			@ApiResponse(responseCode = "500", 
+			description = "An unplanned error occured", 
+			content = @Content(mediaType = "application/json"))
+			},
+			parameters = {
+			@Parameter(name = "orderRequest", 
+			required = true, 
+			description = "The order as JSON"),
+			}
+			)
+			@PostMapping
+			@ResponseStatus(code = HttpStatus.CREATED)
+	
+	        Order createOrder(@RequestBody OrderRequest orderRequest);
+
+
+	
+
+}

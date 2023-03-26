@@ -1,0 +1,60 @@
+package com.promineotech.candle.dao;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.swing.tree.RowMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import com.promineotech.candle.entity.Option;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@Component   //
+@Slf4j
+
+
+public class DefaultCandleSalesDao implements CandleSalesDao {
+	
+	@Autowired
+	  private NamedParameterJdbcTemplate jdbcTemplate;
+	  
+	  @Override
+	  public List<Option> fetchOptions(Option candle_type, String size, String trim) {
+	    log.info("DAO: candle_type={}, size{}, scent{}, candle_type, size, scent");
+	    
+	    //  @formatter:off
+	    String sql = ""
+	        + "SELECT * "
+	        + "FROM models "
+	        + "WHERE model_id = :model_id AND trim_level = :trim_level";
+	    // @formatter:on
+	    
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("model_id", model.toString());
+	    params.put("trim_level", trim);
+	    
+	    return jdbcTemplate.query(sql, params, new RowMapper<>() {
+
+	      @Override
+	      public Option mapRow(ResultSet rs, int rowNum) throws SQLException {
+	        
+//	      @formatter:off
+	        return Option.builder()
+	            .basePrice(new BigDecimal(rs.getString("base_price")))
+	            .modelId(JeepModel.valueOf(rs.getString("model_id")))
+	            .modelPK(rs.getLong("model_pk"))
+	            .numDoors(rs.getInt("num_doors"))
+	            .trimLevel(rs.getString("trim_level"))
+	            .wheelSize(rs.getInt("wheel_size"))
+	            .build();
+	      }});
+	  }
+
+
+}
