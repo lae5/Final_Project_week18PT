@@ -1,6 +1,0 @@
-package com.promineotech.candle.controller;
-
-@Autowired
-public class DefaultCandleSalesController {
-
-}

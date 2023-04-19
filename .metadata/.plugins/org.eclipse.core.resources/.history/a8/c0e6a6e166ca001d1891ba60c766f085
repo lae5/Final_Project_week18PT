@@ -1,8 +1,0 @@
-package com.promineotech.candle.service;
-
-import org.springframework.stereotype.Service;
-
-@Service
-public class DefaultCandleSalesService implements CandleSalesService {
-
-}

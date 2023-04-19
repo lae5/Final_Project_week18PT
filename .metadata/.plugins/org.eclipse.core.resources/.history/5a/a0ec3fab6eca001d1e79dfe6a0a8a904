@@ -1,5 +1,0 @@
-package com.promineotech.candle.entity;
-
-public class OrderRequest {
-
-}

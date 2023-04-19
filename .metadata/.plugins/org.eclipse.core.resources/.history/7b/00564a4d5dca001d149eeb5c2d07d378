@@ -1,7 +1,0 @@
-package com.promineotech.candle.dao;
-
-
-
-public class DefaultCandleSalesDao implements CandleSalesDao {
-
-}
